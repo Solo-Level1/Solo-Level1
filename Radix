@@ -1,0 +1,44 @@
+/*Author:Cabanilla, Adrian A. 
+Subject&Section: CC1-1B
+Date:September 16, 2024
+Title:Programming: Radix Converter*/
+import java.util.Scanner;
+public class FirstRadixConverter {
+
+	public static void main(String[] args) {
+		Scanner firstRadixConversion = new Scanner(System.in);
+
+		while (true) {
+		System.out.print("Enter the origin number system (2-16): ");
+		int originBase = firstRadixConversion.nextInt();
+		//If you type the Origin Base that is less than 2 and greater than 16, you will get an invalid display output.
+		//You must type the Origin Base between 2 and 16.
+		if (originBase < 2 || originBase > 16) {
+		System.out.println("Invalid origin number system. Please enter a number between 2 and 16.");
+				continue;
+			}
+		/**If you type 2 in base, you should only type{0, 1}*/
+		//Example, 110110 for binary(2)
+		System.out.print("Enter the number: ");
+		String number = firstRadixConversion.next();
+
+		System.out.println("Converted numbers:");
+		for (int targetBase = 2; targetBase <= 16; targetBase++) {
+		String convertedNumber = convertBase(number, originBase, targetBase);
+		System.out.println("Base " + targetBase + ": " + convertedNumber);
+			}
+		//The program will be terminated if you type STOP.
+		System.out.print("Enter 'STOP' to exit, or any other input to continue: ");
+		String input = firstRadixConversion.next();
+		if (input.equalsIgnoreCase("STOP")) {
+				break;
+			}
+		}
+
+		firstRadixConversion.close();
+	}
+		private static String convertBase(String number, int originBase, int targetBase) {
+		int decimalValue = Integer.parseInt(number, originBase);
+		return Integer.toString(decimalValue, targetBase);
+	}
+}
