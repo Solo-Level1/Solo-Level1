@@ -1,0 +1,102 @@
+// Author: CABANILLA, ADRIAN A.
+// Class/Section: CC1 1B
+import java.util.Scanner;
+public class BinaryConverter {
+
+    public static void main(String[] args) {
+
+        try (Scanner scanner = new Scanner(System.in)) {
+
+            while (true) {
+
+                // Prompt the user for input
+
+                System.out.print("Please enter a decimal number (or type 'STOP' to end): ");
+
+                String userInput = scanner.nextLine();
+
+               
+
+                // Check if the user wants to stop the program
+
+                if (userInput.equalsIgnoreCase("STOP")) {
+
+                    System.out.println("Program terminated.");
+
+                    break;
+
+                }
+
+               
+
+                try {
+
+                    // Parse the input as an integer
+
+                    int decimalNumber = Integer.parseInt(userInput);
+
+                   
+
+                    // Convert the decimal number to binary
+
+                    String binaryNumber = Integer.toBinaryString(decimalNumber);
+
+                   
+
+                    // Format the binary number to be padded to multiples of 4
+
+                    int length = binaryNumber.length();
+
+                    int padding = (4 - (length % 4)) % 4; // Calculate padding needed
+
+                   
+
+                    // Create a padded binary string manually
+
+                    StringBuilder paddedBinary = new StringBuilder();
+
+                    for (int i = 0; i < padding; i++) {
+
+                        paddedBinary.append('0');
+
+                    }
+
+                    paddedBinary.append(binaryNumber);
+
+                   
+
+                    // Split the binary string into groups of 4
+
+                    StringBuilder formattedBinary = new StringBuilder();
+
+                    for (int i = 0; i < paddedBinary.length(); i += 4) {
+
+                        if (i > 0) {
+
+                            formattedBinary.append(" "); // Add space between groups
+
+                        }
+
+                        formattedBinary.append(paddedBinary, i, Math.min(i + 4, paddedBinary.length()));
+
+                    }
+
+
+                    // Display the result
+
+                    System.out.println("Decimal: " + decimalNumber + " -> Binary: " + formattedBinary);
+
+                } catch (NumberFormatException e) {
+
+                    // Handle invalid input
+
+                    System.out.println("Invalid input, please enter a valid decimal number.");
+
+                }
+
+            }
+
+        }
+
+    }
+
