@@ -13,31 +13,30 @@ public class ClassroomAttendanceSystem {
         // Get the total number of students first.
         System.out.print("Enter the total number of students: ");
         totalNumberOfStudents = attendance.nextInt();
-        attendance.nextLine(); // Consume the newline left by nextInt()
-       
+        attendance.nextLine(); 
+        // Consume the newline left by nextInt()
         for (i = 1; i <= totalNumberOfStudents; i++) {
-            System.out.print("Is student " + i + " present? (Y/N): ");
-            answers = attendance.nextLine();  
+        System.out.print("Is student " + i + " present? (Y/N): ");
+        answers = attendance.nextLine();  
             
-            // Using switch is the easiest way thn if else.
-            switch (answers) {
-                case "Y":
-                    presentCount++;
-                    break;
-                case "N":
-                    absentCount++;
-                    break;
-                default:
-                    System.out.println("Invalid input, please enter Y or N.");
-                    i--; // Repeat the same student's attendance if input is invalid
-                    break;
+        // Using switch is the easiest way then if else.
+        switch (answers) {
+        case "Y":
+        presentCount++;
+        break;
+        case "N":
+        absentCount++;
+        break;
+        default:
+        System.out.println("Invalid input, please enter Y or N.");
+        i--; 
+        // Repeat the same student's attendance if input is invalid
+        break;
             }
         }
-       
         // Display the total present and absent count
         System.out.println("Total present: " + presentCount);
         System.out.println("Total absent: " + absentCount);
-
-        attendance.close(); // Closing the scanner object
-    }
-}
+        // Closing the scanner object
+    
+        attendance.close(); 
