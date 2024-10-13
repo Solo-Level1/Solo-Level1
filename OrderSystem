@@ -1,0 +1,83 @@
+/*Author: Cabanilla, Adrian A.
+ *Restuarant Order System
+ *Challenge No.4
+ **/
+import java.util.Scanner;
+
+public class OrderSystem {
+    public static void main(String[] args) {
+        Scanner OrderMenu = new Scanner(System.in);
+        int itemPrice = 0;
+        String itemName = "";
+
+        // Display the menu
+        System.out.println("MENU");
+        System.out.println("1. Burger    - PHP 100");
+        System.out.println("2. Fries     - PHP  50");
+        System.out.println("3. Soda      - PHP  30");
+        System.out.println("4. Ice Cream - PHP  45");
+        System.out.println("5. Exit");
+        // Get valid menu selection from the user
+        int selection = 0;
+        while (true) {
+        System.out.print("Enter the menu number of your choice (1-5): ");
+        if (OrderMenu.hasNextInt()) {
+        selection = OrderMenu.nextInt();
+        if (selection >= 1 && selection <= 5) {
+        break; // valid selection
+        } else {
+        System.out.println("Invalid selection. Please enter a number between 1 and 5.");
+        }
+        } else {
+        System.out.println("Invalid input. Please enter a number.");
+        OrderMenu.next(); // Clear invalid input
+        }
+    }
+        // Exit the program if 5 is selected
+        if (selection == 5) {
+        System.out.println("Exiting the program.");
+        OrderMenu.close();
+        return; // End the program
+        }
+        // Switch statement to process the selection
+        switch (selection) {
+        case 1:
+        itemName = "Burger";
+        itemPrice = 100;
+        break;
+        case 2:
+        itemName = "Fries";
+        itemPrice = 50;
+        break;
+        case 3:
+        itemName = "Soda";
+        itemPrice = 30;
+        break;
+        case 4:
+        itemName = "Ice Cream";
+        itemPrice = 45;
+        break;
+        }
+        // Get valid quantity from the user
+        int quantity = 0;
+        while (true) {
+        System.out.print("Enter the quantity: ");
+        if (OrderMenu.hasNextInt()) {
+        quantity = OrderMenu.nextInt();
+        if (quantity > 0) {
+        break; // valid quantity
+        } else {
+        System.out.println("Quantity must be a positive integer.");
+        }
+        } else {
+        System.out.println("Invalid input. Please enter a valid number for the quantity.");
+        OrderMenu.next(); // Clear invalid input
+    }
+        }
+        // Calculate the total cost for the selected item
+        int totalAmount = itemPrice * quantity;
+        // Display the result
+        System.out.println("You ordered " + itemName + ".");
+        System.out.println("Total amount: " + totalAmount + " PHP\n");
+        }
+    }
